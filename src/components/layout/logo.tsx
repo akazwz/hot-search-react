@@ -1,14 +1,12 @@
-import { HStack, Text, useColorModeValue, useToken } from '@chakra-ui/react'
-import { CloudStorage } from '@icon-park/react'
+import { HStack, Text, } from '@chakra-ui/react'
+import { RiWeiboLine } from 'react-icons/ri'
 
 export const Logo = () => {
-  const [white, black] = useToken('colors', ['white', 'gray.800'])
   return (
     <HStack spacing={3}>
-      <CloudStorage
-        theme="two-tone"
+      <RiWeiboLine
         size="37px"
-        fill={[useColorModeValue(black, white), '#2F88FF']}
+        color="#E53E3E"
       />
       <Text
         bgGradient="linear(to-r,  #FF0080, #00B0FF)"
@@ -16,7 +14,7 @@ export const Logo = () => {
         fontSize="3xl"
         fontWeight="extrabold"
       >
-        FHub
+        HSearch
       </Text>
     </HStack>
   )
