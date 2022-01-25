@@ -1,10 +1,9 @@
 import { Wordcloud } from '@visx/wordcloud'
 import { Text } from '@visx/text'
-import { ParentSize } from '@visx/responsive'
-import { Box, useBreakpointValue } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { BaseDatum } from '@visx/wordcloud/lib/types'
 import { ISearch } from '../../../pages'
-import { LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export interface WordData {
   text: string;
@@ -13,11 +12,10 @@ export interface WordData {
 
 const colors = ['#143059', '#2F6B9A', '#82a6c2']
 
-export const WordCloudHot = (props: { searches: ISearch[] }) => {
-  const { searches } = props
+export const WordCloudHot = (props: { searches: ISearch[], width: number, height: number }) => {
+  const { searches, width, height } = props
   const [wd, setWd] = useState<Map<string, number>>(new Map)
   const [words, setWords] = useState<BaseDatum[]>([])
-  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!searches) {
@@ -56,37 +54,30 @@ export const WordCloudHot = (props: { searches: ISearch[] }) => {
   }
 
   return (
-    <Box width={500} height={500}>
-      <ParentSize>
-        {(parent: { width: number; height: number }) => {
-          console.log(parent.height)
-          return (
-            <Wordcloud
-              width={parent.width}
-              height={parent.height}
-              words={words}
-              font={'Impact'}
-              spiral="archimedean"
-              fontSize={getFontSize}
+    <Box>
+      <Wordcloud
+        width={width}
+        height={height}
+        words={words}
+        font={'Impact'}
+        spiral="archimedean"
+        fontSize={getFontSize}
+      >
+        {(cloudWords) =>
+          cloudWords.map((w, i) => (
+            <Text
+              key={w.text}
+              fill={colors[i % colors.length]}
+              textAnchor={'middle'}
+              transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
+              fontSize={w.size}
+              fontFamily={w.font}
             >
-              {(cloudWords) =>
-                cloudWords.map((w, i) => (
-                  <Text
-                    key={w.text}
-                    fill={colors[i % colors.length]}
-                    textAnchor={'middle'}
-                    transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
-                    fontSize={w.size}
-                    fontFamily={w.font}
-                  >
-                    {w.text}
-                  </Text>
-                ))
-              }
-            </Wordcloud>
-          )
-        }}
-      </ParentSize>
+              {w.text}
+            </Text>
+          ))
+        }
+      </Wordcloud>
     </Box>
   )
 }

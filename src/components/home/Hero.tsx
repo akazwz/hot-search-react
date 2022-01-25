@@ -5,7 +5,7 @@ import { ISearch } from '../../../pages'
 export const Hero = (props: { searches: ISearch[] }) => {
   return (
     <Box>
-      <WordCloudHot searches={props.searches}/>
+      <WordCloudHot searches={props.searches} width={350} height={350}/>
     </Box>
   )
 }
