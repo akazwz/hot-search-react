@@ -1,7 +1,7 @@
-import { Center } from '@chakra-ui/react'
+import { Box, Center, VStack } from '@chakra-ui/react'
 import { Layout } from '../src/components/layout'
 import { Hero } from '../src/components/home/Hero'
-
+import { HotList } from '../src/components/home/HotList'
 
 export interface ISearch {
   rank: number,
@@ -40,7 +40,10 @@ const Home = (props: { currentHS: ICurrentHS }) => {
   return (
     <Layout>
       <Center>
-        <Hero searches={searches}/>
+        <VStack maxW="xl">
+          <Hero searches={searches}/>
+          <HotList searches={searches}/>
+        </VStack>
       </Center>
     </Layout>
   )
