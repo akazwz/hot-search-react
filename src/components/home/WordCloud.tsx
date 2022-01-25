@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react'
+import { Box } from '@chakra-ui/react'
 import { Wordcloud } from '@visx/wordcloud'
 import { Text } from '@visx/text'
-import { Box } from '@chakra-ui/react'
 import { BaseDatum } from '@visx/wordcloud/lib/types'
 import { ISearch } from '../../../pages'
-import { useEffect, useState } from 'react'
 
 export interface WordData {
   text: string;
@@ -41,13 +41,13 @@ export const WordCloudHot = (props: { searches: ISearch[], width: number, height
     }
     switch (true) {
       case value <= 3:
-        return 50
-      case value <= 10:
         return 40
-      case value <= 30:
+      case value <= 10:
         return 30
-      case value <= 50:
+      case value <= 30:
         return 20
+      case value <= 50:
+        return 10
       default:
         return 20
     }
@@ -61,6 +61,7 @@ export const WordCloudHot = (props: { searches: ISearch[], width: number, height
         words={words}
         font={'Impact'}
         spiral="archimedean"
+        rotate={0}
         fontSize={getFontSize}
       >
         {(cloudWords) =>

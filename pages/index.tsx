@@ -1,4 +1,4 @@
-import { Box, Center, VStack } from '@chakra-ui/react'
+import { Center, Text, VStack } from '@chakra-ui/react'
 import { Layout } from '../src/components/layout'
 import { Hero } from '../src/components/home/Hero'
 import { HotList } from '../src/components/home/HotList'
@@ -43,6 +43,9 @@ const Home = (props: { currentHS: ICurrentHS }) => {
         <VStack maxW="xl">
           <Hero searches={searches}/>
           <HotList searches={searches}/>
+          <Text fontWeight={'thin'} fontSize={'small'}>
+            数据更新日期： {time}
+          </Text>
         </VStack>
       </Center>
     </Layout>

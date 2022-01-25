@@ -1,4 +1,10 @@
-import { Box, List, ListItem, ListIcon, Text, HStack, } from '@chakra-ui/react'
+import {
+  Box,
+  List,
+  ListItem,
+  Text,
+  HStack,
+} from '@chakra-ui/react'
 import { ISearch } from '../../../pages'
 
 export const HotList = (props: { searches: ISearch[] }) => {
