@@ -9,6 +9,7 @@ import { ISearch } from '../../../pages'
 
 export const HotList = (props: { searches: ISearch[] }) => {
   const { searches } = props
+
   const HotListItems = () => {
     const lists = searches.map((search) => {
       return (
@@ -19,6 +20,7 @@ export const HotList = (props: { searches: ISearch[] }) => {
               fontWeight={search.rank <= 3 ? 'bolder' : 'normal'}
               fontStyle="italic"
               m={3}
+              ml={7}
             >
               {search.rank}
             </Text>
@@ -26,7 +28,7 @@ export const HotList = (props: { searches: ISearch[] }) => {
               {search.content}
             </Text>
             <Text
-              fontWeight={'hairline'}
+              fontWeight={'thin'}
               fontSize={'small'}
             >
               {search.hot}
@@ -53,8 +55,9 @@ export const HotList = (props: { searches: ISearch[] }) => {
       </>
     )
   }
+
   return (
-    <Box maxW="2xl">
+    <Box maxW="5xl">
       <List spacing={3}>
         <ListItem>
           <HotListItems/>
