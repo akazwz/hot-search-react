@@ -1,18 +1,18 @@
 import { ChangeEvent, FocusEvent, useState } from 'react'
-import { addMonths, getMonth, getYear, isValid } from 'date-fns'
+import { addMonths, format, getDay, getDaysInMonth, getMonth, getYear, isValid } from 'date-fns'
 import {
-  Center, HStack,
+  Button,
+  Center, Circle, HStack,
   IconButton,
   Input,
   InputGroup,
   InputRightElement,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay, Spacer, Text,
+  ModalOverlay, SimpleGrid, Spacer, Square, Text,
   useDisclosure,
 } from '@chakra-ui/react'
 import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon, } from '@chakra-ui/icons'
@@ -43,6 +43,75 @@ const History = () => {
   const handleLastMonth = () => {
     const newDate = addMonths(date, -1)
     setDateState(newDate)
+  }
+
+  const handleNextMonth = () => {
+    const newDate = addMonths(date, 1)
+    setDateState(newDate)
+  }
+
+  const week = () => {
+    return (
+      <>
+        <Square>
+          Sun
+        </Square>
+        <Square>
+          Mon
+        </Square>
+        <Square>
+          Tus
+        </Square>
+        <Square>
+          Wen
+        </Square>
+        <Square>
+          Thurs
+        </Square>
+        <Square>
+          Fri
+        </Square>
+        <Square>
+          Sat
+        </Square>
+      </>
+    )
+  }
+
+  const lastMonthDates = (n: number) => {
+    let dateArr = []
+    for (let i = 0; i < n; i++) {
+      dateArr.push(
+        <Circle key={'last' + i} size={'40px'}>
+          <Button rounded={'full'} isDisabled>
+            {i}
+          </Button>
+        </Circle>
+      )
+    }
+    return (
+      <>
+        {dateArr}
+      </>
+    )
+  }
+
+  const dates = (n: number) => {
+    let dateArr = []
+    for (let i = 1; i < n + 1; i++) {
+      dateArr.push(
+        <Circle key={'dates' + i} size={'40px'}>
+          <Button rounded={'full'}>
+            {i}
+          </Button>
+        </Circle>
+      )
+    }
+    return (
+      <>
+        {dateArr}
+      </>
+    )
   }
 
   return (
@@ -85,10 +154,16 @@ const History = () => {
                 <IconButton
                   aria-label={'next month'}
                   icon={<ChevronRightIcon/>}
+                  onClick={handleNextMonth}
                 />
               </HStack>
             </ModalHeader>
             <ModalBody>
+              <SimpleGrid columns={7} spacing={3}>
+                {week()}
+                {lastMonthDates(getDay(new Date(format(date, 'yyyy-MM-1'))))}
+                {dates(getDaysInMonth(date))}
+              </SimpleGrid>
             </ModalBody>
             <ModalFooter>
             </ModalFooter>
