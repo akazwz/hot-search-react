@@ -1,6 +1,7 @@
 import { Box, HStack, Spacer } from '@chakra-ui/react'
 import { Logo } from '../logo'
 import { ColorModeToggle } from './ColorModeToggle'
+import { NavLinks } from './NavLinks'
 
 export const Header = () => {
   return (
@@ -15,6 +16,7 @@ export const Header = () => {
       <HStack>
         <Logo/>
         <Spacer/>
+        <NavLinks/>
         <ColorModeToggle/>
       </HStack>
     </Box>
