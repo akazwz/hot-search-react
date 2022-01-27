@@ -210,9 +210,9 @@ const History = () => {
             <ModalBody>
               <SimpleGrid columns={7} spacing={3}>
                 {week()}
-                {lastMonthDates(getDay(new Date(format(date, 'yyyy-MM-1'))))}
+                {lastMonthDates(getDay(new Date(format(date, 'yyyy/MM/1'))))}
                 {dates(getDaysInMonth(date))}
-                {nextMonthDates(42 - (getDay(new Date(format(date, 'yyyy-MM-1'))) + getDaysInMonth(date)))}
+                {nextMonthDates(42 - (getDay(new Date(format(date, 'yyyy/MM/1'))) + getDaysInMonth(date)))}
               </SimpleGrid>
             </ModalBody>
             <ModalFooter>
