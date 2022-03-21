@@ -17,7 +17,7 @@ export interface ICurrentHS {
   searches: ISearch[],
 }
 
-export async function getStaticProps () {
+export async function getServerSideProps () {
   const current = await fetch('https://hs.hellozwz.com/hot-searches/current')
   const json = await current.json()
   const { code, data } = json
