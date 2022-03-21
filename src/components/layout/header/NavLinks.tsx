@@ -14,7 +14,7 @@ export const NavLinks = () => {
       fontSize='1.2rem'
       fontWeight='bold'
     >
-      <NextLink
+      {/*<NextLink
         href={'/'}
         locale={router.locale}
         passHref
@@ -31,7 +31,7 @@ export const NavLinks = () => {
         <Link>
           History
         </Link>
-      </NextLink>
+      </NextLink>*/}
     </HStack>
   )
 }
