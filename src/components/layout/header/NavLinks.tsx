@@ -10,10 +10,9 @@ export const NavLinks = () => {
 
   return (
     <HStack
-      name="links-container"
       spacing={7}
-      fontSize="1.2rem"
-      fontWeight="bold"
+      fontSize='1.2rem'
+      fontWeight='bold'
     >
       <NextLink
         href={'/'}

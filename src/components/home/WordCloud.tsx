@@ -54,31 +54,29 @@ export const WordCloudHot = (props: { searches: ISearch[], width: number, height
   }
 
   return (
-    <Box>
-      <Wordcloud
-        width={width}
-        height={height}
-        words={words}
-        font={'Impact'}
-        spiral="archimedean"
-        rotate={0}
-        fontSize={getFontSize}
-      >
-        {(cloudWords) =>
-          cloudWords.map((w, i) => (
-            <Text
-              key={w.text}
-              fill={colors[i % colors.length]}
-              textAnchor={'middle'}
-              transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
-              fontSize={w.size}
-              fontFamily={w.font}
-            >
-              {w.text}
-            </Text>
-          ))
-        }
-      </Wordcloud>
-    </Box>
+    <Wordcloud
+      width={width}
+      height={height}
+      words={words}
+      font={'Impact'}
+      spiral='rectangular'
+      rotate={0}
+      fontSize={getFontSize}
+    >
+      {(cloudWords) =>
+        cloudWords.map((w, i) => (
+          <Text
+            key={w.text}
+            fill={colors[i % colors.length]}
+            textAnchor={'middle'}
+            transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
+            fontSize={w.size}
+            fontFamily={w.font}
+          >
+            {w.text}
+          </Text>
+        ))
+      }
+    </Wordcloud>
   )
 }
